@@ -1,0 +1,6 @@
+cd JavaScript_Code_Analyzer
+flex js_lexer.l
+bison -d js_parser.y 
+gcc lex.yy.c js_parser.tab.c symbol_table.c semantic.c -o analyzer -lm
+./analyzer < input2.js
+dot -Tpng ast.dot -o ast1.png

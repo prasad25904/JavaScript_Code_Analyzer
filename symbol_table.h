@@ -2,11 +2,12 @@
 #define SYMBOL_TABLE_H
 
 typedef struct Symbol {
-    char* name;
-    char* type;
+    char *name;
+    char *type;
 } Symbol;
 
-Symbol* find_symbol(const char* name);
 void add_symbol(const char* name, const char* type);
+Symbol* find_symbol(const char* name);
+void print_symbol_table();
 
-#endif
+#endif // SYMBOL_TABLE_H
