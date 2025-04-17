@@ -1,6 +1,4 @@
-Sure, here's the **full `README.md` markdown** for your `JavaScript_Code_Analyzer` repository. You can copy and paste this directly into your `README.md` file:
 
-```markdown
 # 🧠 JavaScript Code Analyzer
 
 A lightweight JavaScript static code analyzer built using **Flex** and **Bison**, capable of generating an **Abstract Syntax Tree (AST)**, building a **Symbol Table**, and performing **Semantic Analysis**.
