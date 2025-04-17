@@ -120,10 +120,16 @@ Then open `ast.png` to see a visual representation of the Abstract Syntax Tree.
 GitHub: [https://github.com/prasad25904](https://github.com/prasad25904)
 
 ---
+## 🧑‍💻 Commands to run
+```bash
+# For Ubuntu/Debian
+git clone https://github.com/prasad25904/JavaScript_Code_Analyzer
+cd JavaScript_Code_Analyzer
+flex js_lexer.l
+bison -d js_parser.y 
+gcc lex.yy.c js_parser.tab.c symbol_table.c semantic.c -o analyzer -lm
+./analyzer < input2.js
+dot -Tpng ast.dot -o ast1.png
 
-## 📝 License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 ```
-
-Let me know if you want to include example input/output code snippets or detailed instructions for contributing!
+---
