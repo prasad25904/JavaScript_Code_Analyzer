@@ -1,37 +1,70 @@
+#include "symbol_table.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "symbol_table.h"
 
-#define SYMBOL_TABLE_SIZE 100
+#define DEFAULT_SIZE 100
 
-// Symbol table to store variables
-Symbol* symbol_table[SYMBOL_TABLE_SIZE];
-
-unsigned int hash(const char* str) {
+unsigned int hash(const char* str, int size) {
     unsigned int hash_value = 0;
     while (*str) {
         hash_value = (hash_value << 5) + *str++;
     }
-    return hash_value % SYMBOL_TABLE_SIZE;
+    return hash_value % size;
 }
 
-Symbol* find_symbol(const char* name) {
-    unsigned int index = hash(name);
-    if (symbol_table[index] != NULL && strcmp(symbol_table[index]->name, name) == 0) {
-        return symbol_table[index];
+SymbolTable* create_symbol_table() {
+    SymbolTable *st = malloc(sizeof(SymbolTable));
+    st->size = DEFAULT_SIZE;
+    st->table = calloc(st->size, sizeof(Symbol*));
+    return st;
+}
+
+void free_symbol_table(SymbolTable *table) {
+    if (!table) return;
+    
+    for (int i = 0; i < table->size; i++) {
+        Symbol *current = table->table[i];
+        while (current) {
+            Symbol *temp = current;
+            current = current->next;
+            free(temp->name);
+            free(temp->type);
+            free(temp);
+        }
+    }
+    free(table->table);
+    free(table);
+}
+
+void add_symbol(SymbolTable *table, const char* name, const char* type) {
+    unsigned int index = hash(name, table->size);
+    Symbol *symbol = malloc(sizeof(Symbol));
+    symbol->name = strdup(name);
+    symbol->type = strdup(type);
+    symbol->next = table->table[index];
+    table->table[index] = symbol;
+}
+
+Symbol* find_symbol(SymbolTable *table, const char* name) {
+    unsigned int index = hash(name, table->size);
+    Symbol *current = table->table[index];
+    while (current) {
+        if (strcmp(current->name, name) == 0) {
+            return current;
+        }
+        current = current->next;
     }
     return NULL;
 }
 
-void add_symbol(const char* name, const char* type) {
-    unsigned int index = hash(name);
-    if (symbol_table[index] == NULL) {
-        symbol_table[index] = malloc(sizeof(Symbol));
-        symbol_table[index]->name = strdup(name);
-        symbol_table[index]->type = strdup(type);
-    } else {
-        // Handle the case of symbol collision or already existing symbol
-        printf("Symbol already exists: %s\n", name);
+void print_symbol_table(SymbolTable *table) {
+    printf("Symbol Table:\n");
+    for (int i = 0; i < table->size; i++) {
+        Symbol *current = table->table[i];
+        while (current) {
+            printf("%s: %s\n", current->name, current->type);
+            current = current->next;
+        }
     }
 }

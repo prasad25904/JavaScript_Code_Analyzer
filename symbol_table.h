@@ -4,10 +4,18 @@
 typedef struct Symbol {
     char *name;
     char *type;
+    struct Symbol *next;  // For chaining in hash table
 } Symbol;
 
-void add_symbol(const char* name, const char* type);
-Symbol* find_symbol(const char* name);
-void print_symbol_table();
+typedef struct {
+    Symbol **table;
+    int size;
+} SymbolTable;
 
-#endif // SYMBOL_TABLE_H
+SymbolTable* create_symbol_table();
+void free_symbol_table(SymbolTable *table);
+void add_symbol(SymbolTable *table, const char* name, const char* type);
+Symbol* find_symbol(SymbolTable *table, const char* name);
+void print_symbol_table(SymbolTable *table);
+
+#endif

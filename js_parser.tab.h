@@ -44,12 +44,6 @@
 #if YYDEBUG
 extern int yydebug;
 #endif
-/* "%code requires" blocks.  */
-#line 1 "js_parser.y"
-
-    #include "ast.h"
-
-#line 53 "js_parser.tab.h"
 
 /* Token kinds.  */
 #ifndef YYTOKENTYPE
@@ -60,36 +54,61 @@ extern int yydebug;
     YYEOF = 0,                     /* "end of file"  */
     YYerror = 256,                 /* error  */
     YYUNDEF = 257,                 /* "invalid token"  */
-    FUNCTION = 258,                /* FUNCTION  */
-    VAR = 259,                     /* VAR  */
-    LET = 260,                     /* LET  */
-    CONST = 261,                   /* CONST  */
-    IF = 262,                      /* IF  */
-    ELSE = 263,                    /* ELSE  */
-    WHILE = 264,                   /* WHILE  */
-    RETURN = 265,                  /* RETURN  */
-    NUMBER = 266,                  /* NUMBER  */
-    IDENTIFIER = 267,              /* IDENTIFIER  */
-    STRING = 268,                  /* STRING  */
-    ASSIGN = 269,                  /* ASSIGN  */
-    PLUS = 270,                    /* PLUS  */
-    MINUS = 271,                   /* MINUS  */
-    MULTIPLY = 272,                /* MULTIPLY  */
-    DIVIDE = 273,                  /* DIVIDE  */
-    EQUALITY = 274,                /* EQUALITY  */
-    LESS_THAN = 275,               /* LESS_THAN  */
-    GREATER_THAN = 276,            /* GREATER_THAN  */
-    LESS_EQUAL = 277,              /* LESS_EQUAL  */
-    GREATER_EQUAL = 278,           /* GREATER_EQUAL  */
-    LBRACE = 279,                  /* LBRACE  */
-    RBRACE = 280,                  /* RBRACE  */
-    LPAREN = 281,                  /* LPAREN  */
-    RPAREN = 282,                  /* RPAREN  */
-    SEMICOLON = 283,               /* SEMICOLON  */
-    COMMA = 284,                   /* COMMA  */
-    LBRACKET = 285,                /* LBRACKET  */
-    RBRACKET = 286,                /* RBRACKET  */
-    COLON = 287                    /* COLON  */
+    OR = 258,                      /* OR  */
+    AND = 259,                     /* AND  */
+    FUNCTION = 260,                /* FUNCTION  */
+    VAR = 261,                     /* VAR  */
+    LET = 262,                     /* LET  */
+    CONST = 263,                   /* CONST  */
+    IF = 264,                      /* IF  */
+    ELSE = 265,                    /* ELSE  */
+    WHILE = 266,                   /* WHILE  */
+    RETURN = 267,                  /* RETURN  */
+    INSTANCEOF = 268,              /* INSTANCEOF  */
+    IN = 269,                      /* IN  */
+    TYPEOF = 270,                  /* TYPEOF  */
+    VOID = 271,                    /* VOID  */
+    DELETE = 272,                  /* DELETE  */
+    NEW = 273,                     /* NEW  */
+    THIS = 274,                    /* THIS  */
+    PLUS_PLUS = 275,               /* PLUS_PLUS  */
+    MINUS_MINUS = 276,             /* MINUS_MINUS  */
+    LEFT_SHIFT = 277,              /* LEFT_SHIFT  */
+    RIGHT_SHIFT = 278,             /* RIGHT_SHIFT  */
+    UNSIGNED_RIGHT_SHIFT = 279,    /* UNSIGNED_RIGHT_SHIFT  */
+    NUMBER = 280,                  /* NUMBER  */
+    IDENTIFIER = 281,              /* IDENTIFIER  */
+    STRING = 282,                  /* STRING  */
+    BOOLEAN = 283,                 /* BOOLEAN  */
+    ASSIGN = 284,                  /* ASSIGN  */
+    PLUS = 285,                    /* PLUS  */
+    MINUS = 286,                   /* MINUS  */
+    MULTIPLY = 287,                /* MULTIPLY  */
+    DIVIDE = 288,                  /* DIVIDE  */
+    MODULO = 289,                  /* MODULO  */
+    NOT = 290,                     /* NOT  */
+    BIT_NOT = 291,                 /* BIT_NOT  */
+    BIT_AND = 292,                 /* BIT_AND  */
+    BIT_OR = 293,                  /* BIT_OR  */
+    BIT_XOR = 294,                 /* BIT_XOR  */
+    EQUALITY = 295,                /* EQUALITY  */
+    NEQ = 296,                     /* NEQ  */
+    STRICT_EQUALITY = 297,         /* STRICT_EQUALITY  */
+    STRICT_INEQUALITY = 298,       /* STRICT_INEQUALITY  */
+    LESS_THAN = 299,               /* LESS_THAN  */
+    GREATER_THAN = 300,            /* GREATER_THAN  */
+    LESS_EQUAL = 301,              /* LESS_EQUAL  */
+    GREATER_EQUAL = 302,           /* GREATER_EQUAL  */
+    LBRACE = 303,                  /* LBRACE  */
+    RBRACE = 304,                  /* RBRACE  */
+    LPAREN = 305,                  /* LPAREN  */
+    RPAREN = 306,                  /* RPAREN  */
+    SEMICOLON = 307,               /* SEMICOLON  */
+    COMMA = 308,                   /* COMMA  */
+    LBRACKET = 309,                /* LBRACKET  */
+    RBRACKET = 310,                /* RBRACKET  */
+    COLON = 311,                   /* COLON  */
+    DOT = 312                      /* DOT  */
   };
   typedef enum yytokentype yytoken_kind_t;
 #endif
@@ -98,13 +117,13 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 22 "js_parser.y"
+#line 35 "js_parser.y"
 
     char *str;
     int num;
-    ASTNode *node;
+    struct ASTNode *node;
 
-#line 108 "js_parser.tab.h"
+#line 127 "js_parser.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;
