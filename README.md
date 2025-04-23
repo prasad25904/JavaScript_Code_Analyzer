@@ -91,26 +91,16 @@ Then open `ast.png` to see a visual representation of the Abstract Syntax Tree.
 
 ## ✅ Supported JavaScript Features
 
-- Variable declarations using `var`
+- Variable declarations using `var`, `let`, `const`
 - Arithmetic and logical expressions
 - `if` and `while` statements
 - Object literals
 - Function definitions and calls
 - Nested scopes and blocks
+- `Arrays`, `Strings`
 
-> Note: Support for `let`, `const`, arrays, classes, arrow functions, and import/export is **in progress**.
+> Note: Support for classes, arrow functions, and import/export is **in progress**.
 
----
-
-## 🚀 Planned Improvements
-
-- [ ] Add support for modern ES6+ syntax (e.g., `let`, `const`, arrow functions, classes)
-- [ ] Enhanced semantic analysis and type checking
-- [ ] Improved error messages (syntax and semantic)
-- [ ] Export AST in JSON format for external tools
-- [ ] CLI flags for customization (e.g., output format, visualization toggle)
-- [ ] Web-based frontend using React for interactive AST visualization
-- [ ] Unit testing and CI integration
 
 ---
 
