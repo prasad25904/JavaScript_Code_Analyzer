@@ -1,7 +1,3 @@
-function add(x, y) {
-  let result = x + y;
-  return result;
-}
 function main() {
   var sum = add(5, 3);
 
